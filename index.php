@@ -34,8 +34,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Users Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right">Create user</a>
+                        <h2 class="pull-left">Таблица пользователей</h2>
+                        <a href="create_user.php" class="btn btn-success pull-right">Создать пользователя</a>
                     </div>
                     <?php
                     // Include config file
@@ -64,8 +64,8 @@
                                         echo "<td>" . $row['password'] . "</td>";
                                         echo "<td>" . $row['create'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='update_user.php?id=". $row['id'] ."' title='Обновить информацию' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='delete_user.php?id=". $row['id'] ."' title='Удалить пользователя' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }

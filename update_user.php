@@ -44,9 +44,9 @@ if(isset($_POST["username"]) && !empty($_POST["password"])){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Create Record</h2>
+                        <h2>Редактирование пользователя</h2>
                     </div>
-                    <p>Please fill this form and submit to add user record to the database.</p>
+                    <p>Заполните поля для обновления информации пользователя</p>
                     <form method="post" action="">
                         <div class="form-group ">
                             <label>New username</label>
@@ -59,8 +59,8 @@ if(isset($_POST["username"]) && !empty($_POST["password"])){
                             <span class="help-block"></span>
                         </div>
                         
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <input type="submit" class="btn btn-primary" value="Редактировать">
+                        <a href="index.php" class="btn btn-default">На главную</a>
                     </form>
                     <br>
                     <?php echo $errorstate ?>

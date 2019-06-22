@@ -37,9 +37,9 @@ if (isset($_POST["username"])) {
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Create Record</h2>
+                        <h2>Создать пользователя</h2>
                     </div>
-                    <p>Please fill this form and submit to add user record to the database.</p>
+                    <p>Заполните все поля и нажмите "Cоздать" для создания нового пользователя</p>
                     <form method="post" action="">
                         <div class="form-group ">
                             <label>Username</label>
@@ -52,8 +52,8 @@ if (isset($_POST["username"])) {
                             <span class="help-block"><?php echo $password_err;?></span>
                         </div>
                         
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <input type="submit" class="btn btn-primary" value="Создать">
+                        <a href="index.php" class="btn btn-default">На главную</a>
                         
                     </form>
                     <br>

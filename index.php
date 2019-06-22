@@ -98,7 +98,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Таблица сообщений</h2>
-                        <a href="create_user.php" class="btn btn-success pull-right">Создать сообщение</a>
+                        <a href="create_user.php" class="btn btn-success pull-right">Новое сообщение</a>
                     </div>
                     <?php
                     // Include config file

@@ -6,8 +6,16 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
     // Get hidden input value
     $id = $_GET["id"];
    
+   
+    
+    $edit_username = mysqli_fetch_row(mysqli_query($link, "SELECT username FROM users WHERE id = $id "));
+    $edit_pass = mysqli_fetch_row(mysqli_query($link, "SELECT password FROM users WHERE id = $id "));
+
+    
+
  
 }
+
 
 
 if(isset($_POST["username"]) && !empty($_POST["password"])){
@@ -45,17 +53,18 @@ if(isset($_POST["username"]) && !empty($_POST["password"])){
                 <div class="col-md-12">
                     <div class="page-header">
                         <h2>Редактирование пользователя</h2>
+                    
                     </div>
                     <p>Заполните поля для обновления информации пользователя</p>
                     <form method="post" action="">
                         <div class="form-group ">
                             <label>New username</label>
-                            <input type="text" name="username" class="form-control" >
+                            <input type="text" name="username" class="form-control" placeholder="<?php echo  $edit_username[0]; ?>">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group ">
                             <label>New password</label>
-                            <input type="text" name="password" class="form-control">
+                            <input type="text" name="password" class="form-control" placeholder="<?php echo  $edit_pass[0]; ?>">
                             <span class="help-block"></span>
                         </div>
                         

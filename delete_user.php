@@ -4,6 +4,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
     require_once "config.php";
     
+    
+
     // Prepare a delete statement
     $sql = "DELETE FROM users WHERE id = ?";
     
@@ -23,13 +25,20 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             echo "Oops! Something went wrong. Please try again later.";
         }
     }
+
+   
      
+
     // Close statement
     mysqli_stmt_close($stmt);
     
     // Close connection
     mysqli_close($link);
-} else{
+} 
+
+
+
+else{
     // Check existence of id parameter
     if(empty(trim($_GET["id"]))){
         // URL doesn't contain id parameter. Redirect to error page
@@ -57,15 +66,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h1>Delete Record</h1>
+                        <h1>Удаление пользователя</h1>
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
                             <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
-                            <p>Are you sure you want to delete this record?</p><br>
+                            <p>Вы уверены что хотите удалить пользователя <?php echo $edit_username[0]; ?> ?</p><br>
                             <p>
-                                <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="index.php" class="btn btn-default">No</a>
+                                <input type="submit" value="Да" class="btn btn-danger">
+                                <a href="index.php" class="btn btn-default">Нет</a>
                             </p>
                         </div>
                     </form>

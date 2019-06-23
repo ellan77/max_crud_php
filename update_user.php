@@ -29,23 +29,26 @@ if(isset($_POST["username"]) && !empty($_POST["password"])){
 }
 
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Create Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
-        .wrapper{
+        .wrapper {
             width: 500px;
             margin: 0 auto;
         }
-        .massage{ 
+
+        .massage {
             padding: 10px 20px 10px 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container-fluid">
@@ -53,29 +56,32 @@ if(isset($_POST["username"]) && !empty($_POST["password"])){
                 <div class="col-md-12">
                     <div class="page-header">
                         <h2>Редактирование пользователя</h2>
-                    
+
                     </div>
                     <p>Заполните поля для обновления информации пользователя</p>
                     <form method="post" action="">
                         <div class="form-group ">
                             <label>New username</label>
-                            <input type="text" name="username" class="form-control" placeholder="<?php echo  $edit_username[0]; ?>">
+                            <input type="text" name="username" class="form-control"
+                                placeholder="<?php echo  $edit_username[0]; ?>">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group ">
                             <label>New password</label>
-                            <input type="text" name="password" class="form-control" placeholder="<?php echo  $edit_pass[0]; ?>">
+                            <input type="text" name="password" class="form-control"
+                                placeholder="<?php echo  $edit_pass[0]; ?>">
                             <span class="help-block"></span>
                         </div>
-                        
+
                         <input type="submit" class="btn btn-primary" value="Редактировать">
                         <a href="index.php" class="btn btn-default">На главную</a>
                     </form>
                     <br>
                     <?php echo $errorstate ?>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
 </body>
+
 </html>

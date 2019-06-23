@@ -22,29 +22,28 @@ if (isset($_POST["message"])) {
         $i++;
     }
 
-    
-   
-  
-  
 
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Create Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
-        .wrapper{
+        .wrapper {
             width: 500px;
             margin: 0 auto;
         }
-        .massage{ 
+
+        .massage {
             padding: 10px 20px 10px 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container-fluid">
@@ -56,37 +55,40 @@ if (isset($_POST["message"])) {
                     <p>Заполните все поля и нажмите "Отправить" для создания нового сообщения</p>
                     <form method="post" action="">
                         <div class="form-group ">
-                            <label>Message</label>
-                            <textarea type="text" name="message" class="form-control" > </textarea>
+                            <label>Сообщение</label>
+                            <input type="text" name="message" class="form-control">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group ">
-                        <select name="user_id" class="form-control">
-                            <?php
+                            <label>Отправитель</label>
+                            <select name="user_id" class="form-control">
+                                <?php
                                 foreach($users_id as $v){
                                     echo '<option>' . $v . '</option>' ;
                                 }
                             ?>
-                        </select>
-                        <br>
-                        <select name="to_user_id" class="form-control">
-                        <?php
+                            </select>
+                            <br>
+                            <label>Получатель</label>
+                            <select name="to_user_id" class="form-control">
+                                <?php
                                 foreach($users_id as $v){
                                     echo '<option>' . $v . '</option>' ;
                                 }
                             ?>
-                        </select>
+                            </select>
                         </div>
-                        
+
                         <input type="submit" class="btn btn-primary" value="Отправить">
                         <a href="index.php" class="btn btn-default">На главную</a>
-                        
+
                     </form>
                     <br>
-                        <?php echo $errorstate ?>
+                    <?php echo $errorstate ?>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
 </body>
+
 </html>

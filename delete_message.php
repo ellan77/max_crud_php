@@ -40,17 +40,19 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>View Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
-        .wrapper{
+        .wrapper {
             width: 500px;
             margin: 0 auto;
         }
     </style>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container-fluid">
@@ -61,7 +63,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
-                            <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
+                            <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>" />
                             <p>Вы действительно хотите удалить это сообщение?</p><br>
                             <p>
                                 <input type="submit" value="Удалить" class="btn btn-danger">
@@ -70,8 +72,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                     </form>
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
 </body>
+
 </html>

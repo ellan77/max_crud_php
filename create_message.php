@@ -2,9 +2,9 @@
 // Include config file
 require_once "config.php";
  
-if (isset($_POST["username"])) {
+if (isset($_POST["message"])) {
     //Вставляем данные, подставляя их в запрос
-    $sql = mysqli_query($link, "INSERT INTO `users` (`username`, `Password`) VALUES ('{$_POST['username']}', '{$_POST['password']}')");
+    $sql = mysqli_query($link, "INSERT INTO `messages` (`user_id`, `to_user_id`, `message`) VALUES ({$_POST['user_id']}, {$_POST['to_user_id']}, '{$_POST['message']}')");
     //Если вставка прошла успешно
     if ($sql) {
         $errorstate =  '<p class="bg-success massage">Данные успешно добавлены в таблицу.</p>';
@@ -12,6 +12,20 @@ if (isset($_POST["username"])) {
           $errorstate =  '<p class="bg-danger massage"p>Произошла ошибка: ' . mysqli_error($link) . '</p>';
       }
     }
+
+    $res = mysqli_query($link, "SELECT id FROM users ");
+    $users_id = Array();
+  
+    $i = 0;
+    while($row = mysqli_fetch_array($res)){
+        $users_id[$i] = $row['id'];
+        $i++;
+    }
+
+    
+   
+  
+  
 
 ?>
  
@@ -37,22 +51,34 @@ if (isset($_POST["username"])) {
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Создать пользователя</h2>
+                        <h2>Новое сообщение</h2>
                     </div>
-                    <p>Заполните все поля и нажмите "Cоздать" для создания нового пользователя</p>
+                    <p>Заполните все поля и нажмите "Отправить" для создания нового сообщения</p>
                     <form method="post" action="">
                         <div class="form-group ">
-                            <label>Username</label>
-                            <input type="text" name="username" class="form-control" >
+                            <label>Message</label>
+                            <textarea type="text" name="message" class="form-control" > </textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group ">
-                            <label>Password</label>
-                            <input type="text" name="password" class="form-control">
-                            <span class="help-block"><?php echo $password_err;?></span>
+                        <select name="user_id" class="form-control">
+                            <?php
+                                foreach($users_id as $v){
+                                    echo '<option>' . $v . '</option>' ;
+                                }
+                            ?>
+                        </select>
+                        <br>
+                        <select name="to_user_id" class="form-control">
+                        <?php
+                                foreach($users_id as $v){
+                                    echo '<option>' . $v . '</option>' ;
+                                }
+                            ?>
+                        </select>
                         </div>
                         
-                        <input type="submit" class="btn btn-primary" value="Создать">
+                        <input type="submit" class="btn btn-primary" value="Отправить">
                         <a href="index.php" class="btn btn-default">На главную</a>
                         
                     </form>

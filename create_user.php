@@ -1,37 +1,35 @@
 <?php
+
 // Include config file
-require_once "config.php";
- 
-if (isset($_POST["username"])) {
+require_once "new_config.php";
+
+if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+
     //Вставляем данные, подставляя их в запрос
-    $sql = mysqli_query($link, "INSERT INTO `users` (`username`, `Password`) VALUES ('{$_POST['username']}', '{$_POST['password']}')");
+    $sql = 'INSERT INTO users(username, password) VALUES (:username, :password)';
+    $query = $pdo->prepare($sql);
+    $state =  $query->execute(['username' => $_POST['username'], 'password' => $_POST['password']]);
+
     //Если вставка прошла успешно
-    if ($sql) {
+    if ($state) {
         $errorstate =  '<p class="bg-success massage">Данные успешно добавлены в таблицу.</p>';
       } else {
-          $errorstate =  '<p class="bg-danger massage"p>Произошла ошибка: ' . mysqli_error($link) . '</p>';
+        $err = $query->errorCode();
+        $errorstate =  '<p class="bg-danger massage"p>Произошла ошибка: SQL' . $err. '</p>';
       }
     }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <title>Create Record</title>
+    <title>Создать пользователя</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        .wrapper {
-            width: 500px;
-            margin: 0 auto;
-        }
-
-        .massage {
-            padding: 10px 20px 10px 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css" />
+        
 </head>
 
 <body>
@@ -61,6 +59,7 @@ if (isset($_POST["username"])) {
                     </form>
                     <br>
                     <?php echo $errorstate ?>
+
                 </div>
             </div>
         </div>

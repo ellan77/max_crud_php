@@ -1,0 +1,27 @@
+.wrapper {
+    width: 650px;
+    margin: 0 auto;
+}
+
+.page-header h2 {
+    margin-top: 0;
+}
+
+table tr td:last-child a {
+    margin-right: 15px;
+}
+
+.control {
+    background: #000;
+    color: #fff;
+}
+
+/* create user
+.wrapper {
+    width: 500px;
+    margin: 0 auto;
+} */
+
+.massage {
+    padding: 10px 20px 10px 20px;
+}

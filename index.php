@@ -19,11 +19,13 @@
         <div class="container-fluid">
 
             <?php 
+
             require_once('components/show_users_table.php'); 
             require_once('components/show_message_table.php'); 
             
             // Close connection
             $pdo = null;
+            
             ?>
 
 

@@ -8,13 +8,8 @@ if (!empty($_POST["message"])) {
     $query = $pdo->prepare($sql);
     $state = $query->execute(['user_id' => $_POST['user_id'], 'to_user_id' => $_POST['to_user_id'], 'message' => $_POST['message']]);
     
-    //Если вставка прошла успешно
-    if($state) {
-        $errorstate =  '<p class="bg-success massage">Данные успешно добавлены в таблицу.</p>';
-      } else {
-        $err = $query->errorCode();
-        $errorstate =  '<p class="bg-danger massage"p>Произошла ошибка: SQL ' . $err. '</p>';
-      }
+    require_once "components/check_state.php";
+    
     }
 
     $users_array = $pdo->prepare("SELECT id FROM users ");

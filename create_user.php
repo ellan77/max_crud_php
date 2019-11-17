@@ -10,13 +10,8 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
     $query = $pdo->prepare($sql);
     $state =  $query->execute(['username' => $_POST['username'], 'password' => $_POST['password']]);
 
-    //Если вставка прошла успешно
-    if ($state) {
-        $errorstate =  '<p class="bg-success massage">Данные успешно добавлены в таблицу.</p>';
-      } else {
-        $err = $query->errorCode();
-        $errorstate =  '<p class="bg-danger massage"p>Произошла ошибка: SQL' . $err. '</p>';
-      }
+    require_once "components/check_state.php";
+    
     }
 
 ?>

@@ -1,5 +1,10 @@
+<?php 
+    // Include config file
+    require_once "new_config.php";
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -36,21 +41,22 @@
 <body>
     <div class="wrapper">
         <div class="container-fluid">
+
+        
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Таблица пользователей</h2>
                         <a href="create_user.php" class="btn btn-success pull-right">Создать пользователя</a>
                     </div>
+
                     <?php
-                    // Include config file
-                    require_once "config.php";
-                    
-                    // Attempt select query execution
-                    $sql = "SELECT * FROM users";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
-                            echo "<table class='table table-bordered table-striped'>";
+
+                    $query = $pdo->query('SELECT * FROM `users`');
+
+                    if ($query->rowCount()>0){
+
+                    echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>#</th>";
@@ -62,40 +68,26 @@
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
+                                while($row = $query->fetch(PDO::FETCH_OBJ)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['username'] . "</td>";
-                                        echo "<td>" . $row['password'] . "</td>";
-                                        echo "<td>" . $row['create'] . "</td>";
+                                        echo "<td>" . $row->id . "</td>";
+                                        echo "<td>" . $row->username . "</td>";
+                                        echo "<td>" . $row->password . "</td>";
+                                        echo "<td>" . $row->create . "</td>";
                                         echo "<td>";
-                                            echo "<a href='update_user.php?id=". $row['id'] ."' title='Обновить информацию' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='delete_user.php?id=". $row['id'] ."' title='Удалить пользователя' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='update_user.php?id=". $row->id ."' title='Обновить информацию' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='delete_user.php?id=". $row->id ."' title='Удалить пользователя' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
-                        } else{
+                        }else{
                             echo "<p class='lead'><em>Нет записей в базе</em></p>";
                         }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-                    }
- 
-                  
-                   
                     ?>
                 </div>
             </div>
-
-
-
-
-
-
 
 
 
@@ -105,14 +97,14 @@
                         <h2 class="pull-left">Таблица сообщений</h2>
                         <a href="create_message.php" class="btn btn-success pull-right">Новое сообщение</a>
                     </div>
+                   
                     <?php
-                    // Include config file
-                    require_once "config.php";
-                    
+
                     // Attempt select query execution
-                    $sql = "SELECT * FROM messages";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
+                    $query = $pdo->query('SELECT * FROM `messages`');
+
+                    if($query->rowCount()>0){
+
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
@@ -126,32 +118,29 @@
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
+                                while($row = $query->fetch(PDO::FETCH_OBJ)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['user_id'] . "</td>";
-                                        echo "<td>" . $row['to_user_id'] . "</td>";
-                                        echo "<td>" . $row['message'] . "</td>";
-                                        echo "<td>" . $row['created'] . "</td>";
+                                        echo "<td>" . $row->id . "</td>";
+                                        echo "<td>" . $row->user_id . "</td>";
+                                        echo "<td>" . $row->to_user_id . "</td>";
+                                        echo "<td>" . $row->message . "</td>";
+                                        echo "<td>" . $row->created . "</td>";
                                         echo "<td>";
-                                            echo "<a href='update_message.php?id=". $row['id'] ."' title='Редактировать сообщение' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='delete_message.php?id=". $row['id'] ."' title='Удалить сообщение' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='update_message.php?id=". $row->id ."' title='Редактировать сообщение' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='delete_message.php?id=". $row->id ."' title='Удалить сообщение' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
-                            // Free result set
-                            mysqli_free_result($result);
+                           
                         } else{
                             echo "<p class='lead'><em>Нет записей в базе</em></p>";
                         }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-                    }
+                    
  
                     // Close connection
-                    mysqli_close($link);
+                    $pdo = null;
                     ?>
                 </div>
             </div>
